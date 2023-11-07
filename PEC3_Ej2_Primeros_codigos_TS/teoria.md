@@ -1,0 +1,1 @@
+<image src="/image.png" alt="Descripción de la imagen">
