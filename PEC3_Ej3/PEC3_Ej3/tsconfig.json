@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    //El codigo se compilara en ECMAScript5
+    "target": "es2015", 
+    //TypeScript generara un formato de CommonJS al compilar el proyecto.
+    "module": "commonjs",
+    //Los archivos de compilación se guardaran en la carpeta de ./dist
+    "outDir": "./dist",
+    //La carpeta de src es el directorio raiz del proyecto en TypeScript.
+    "rootDir": "./src",
+    //Habilitamos las opciones mas estrictas de comprobación de TypeScript
+    "strict": true,
+    //Activa la compilación incremental
+    "incremental": true,
+    //Este archivo como el tsconfig.json y se utiliza para un archivo de informacion de construccion.
+    "tsBuildInfoFile": "./buildcache",
+  }
+}
