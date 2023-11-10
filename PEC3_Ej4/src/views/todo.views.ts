@@ -4,20 +4,24 @@
  * Visual representation of the model.
  */
 export class TodoView {
-  private app : HTMLElement;
-  private form: HTMLFormElement;
+  private app: HTMLElement;
+  private form: HTMLElement;
   private input: HTMLInputElement;
-  private submitButton: HTMLButtonElement;
+  private submitButton: HTMLElement;
   private title: HTMLElement;
-  private todoList: HTMLUListElement;
+  private todoList: HTMLElement;
   private _temporaryTodoText: string;
   constructor() {
-    this.app = this.getElement("#root");
+    // this.app = document.getElementById("root");
+    this.app = this.getElement('#root');
     this.form = this.createElement("form", "form");
-    this.input = this.createElement("input", 'input');
-    this.input.type = "text";
-    this.input.placeholder = "Add todo";
-    this.input.name = "todo";
+    this.input = this.createElement('input');
+    this.input.placeholder = 'default';
+    this.input.type = 'text';
+    // this.input = this.createElement("input", 'input');
+    // this.input.type = "text";
+    // this.input.placeholder = "Add todo";
+    // this.input.name = "todo";
     this.submitButton = this.createElement("button", "button");
     this.submitButton.textContent = "Submit";
     this.form.append(this.input, this.submitButton);
@@ -29,6 +33,7 @@ export class TodoView {
     this._temporaryTodoText = "";
     this._initLocalListeners();
   }
+
 
   get _todoText() {
     return this.input.value;
@@ -52,7 +57,7 @@ export class TodoView {
     return element;
   }
 
-  displayTodos(todos: {id: number, text: string, complete: boolean}[]) {
+  displayTodos(todos: { id: number, text: string, complete: boolean }[]) {
     // Delete all nodes
     while (this.todoList.firstChild) {
       this.todoList.removeChild(this.todoList.firstChild);

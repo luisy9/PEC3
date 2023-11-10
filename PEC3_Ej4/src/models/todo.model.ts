@@ -5,7 +5,7 @@
  */
 export interface todoModel {
   text: string,
-  complete?: boolean | undefined
+  complete?: boolean
 }
 export class Todo {
   public id: string;
