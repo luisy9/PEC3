@@ -7,7 +7,7 @@
  * @param view
  */
 class TodoController {
-  constructor(service, view) {
+  constructor(public service: TodoService ,public view: TodoView ) {
     this.service = service;
     this.view = view;
 

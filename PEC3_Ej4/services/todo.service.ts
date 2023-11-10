@@ -3,9 +3,18 @@
  *
  * Manages the data of the application.
  */
+type MyObject = Array<{
+  text: string,
+  complete: boolean
+}>;
+
 class TodoService {
+  public todos: Array<{ text: string, complete: boolean }>;
+  public objectLocalStorage: MyObject;
   constructor() {
-    this.todos = (JSON.parse(localStorage.getItem("todos")) || []).map(
+    const localStorageValue = localStorage.getItem("todos");
+    this.objectLocalStorage = localStorageValue ? JSON.parse(localStorageValue) : null;
+    this.todos = (this.objectLocalStorage || []).map(
       todo => new Todo(todo)
     );
   }
@@ -29,9 +38,9 @@ class TodoService {
     this.todos = this.todos.map(todo =>
       todo.id === id
         ? new Todo({
-            ...todo,
-            text: updatedText
-          })
+          ...todo,
+          text: updatedText
+        })
         : todo
     );
 
