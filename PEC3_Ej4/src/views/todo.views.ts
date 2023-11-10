@@ -3,7 +3,7 @@
  *
  * Visual representation of the model.
  */
-class TodoView {
+export class TodoView {
   private app : HTMLElement;
   private form: HTMLFormElement;
   private input: HTMLInputElement;

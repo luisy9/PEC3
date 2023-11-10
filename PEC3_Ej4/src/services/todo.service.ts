@@ -33,7 +33,7 @@ export class TodoService {
     this._commit(this.todos);
   }
 
-  editTodo(id, updatedText) {
+  editTodo(id: string, updatedText: string) {
     this.todos = this.todos.map(todo =>
       todo.id === id
         ? new Todo({
@@ -46,13 +46,13 @@ export class TodoService {
     this._commit(this.todos);
   }
 
-  deleteTodo(_id) {
+  deleteTodo(_id: string) {
     this.todos = this.todos.filter(({ id }) => id !== _id);
 
     this._commit(this.todos);
   }
 
-  toggleTodo(_id) {
+  toggleTodo(_id: string) {
     this.todos = this.todos.map(todo =>
       todo.id === _id ? new Todo({ ...todo, complete: !todo.complete }) : todo
     );

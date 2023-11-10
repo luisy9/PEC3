@@ -5,12 +5,12 @@
  */
 export interface todoModel {
   text: string,
-  complete: boolean
+  complete?: boolean | undefined
 }
 export class Todo {
   public id: string;
   public text: string;
-  public complete: boolean;
+  public complete?: boolean;
 
   constructor({ text, complete }: todoModel = {
     text: '',

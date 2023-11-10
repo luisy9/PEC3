@@ -6,8 +6,10 @@
  * @param model
  * @param view
  */
-class TodoController {
-  constructor(public service: TodoService ,public view: TodoView ) {
+import { TodoService } from '../services/todo.service';
+import { TodoView } from '../views/todo.views';
+export class TodoController {
+  constructor(public service: TodoService, public view: TodoView) {
     this.service = service;
     this.view = view;
 
