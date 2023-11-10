@@ -3,14 +3,13 @@
  *
  * Manages the data of the application.
  */
-type MyObject = Array<{
-  text: string,
-  complete: boolean
-}>;
+import { Todo } from '../models/todo.model';
 
-class TodoService {
-  public todos: Array<{ text: string, complete: boolean }>;
-  public objectLocalStorage: MyObject;
+type todo = Array<Todo>;
+
+export class TodoService {
+  public todos: todo;
+  public objectLocalStorage: todo;
   constructor() {
     const localStorageValue = localStorage.getItem("todos");
     this.objectLocalStorage = localStorageValue ? JSON.parse(localStorageValue) : null;
@@ -19,17 +18,17 @@ class TodoService {
     );
   }
 
-  bindTodoListChanged(callback) {
+  bindTodoListChanged(callback: Function) {
     this.onTodoListChanged = callback;
   }
 
-  _commit(todos) {
+  _commit(todos: todo) {
     this.onTodoListChanged(todos);
     localStorage.setItem("todos", JSON.stringify(todos));
   }
 
-  addTodo(text) {
-    this.todos.push(new Todo({ text }));
+  addTodo(text: string) {
+    this.todos.push(new Todo( text ));
 
     this._commit(this.todos);
   }
