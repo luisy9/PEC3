@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "build": "webpack --config webpack.config.eje3.example.js"
+  },
+
   "devDependencies": {
     "ts-loader": "^9.5.0",
     "typescript": "^5.2.2",
