@@ -8,7 +8,7 @@
  */
 import { TodoService } from '../services/todo.service';
 import { TodoView } from '../views/todo.views';
-import { todoModel } from '../models/todo.model';
+import { Todo, todoModel } from '../models/todo.model';
 export class TodoController {
   constructor(public service: TodoService, public view: TodoView) {
     this.service = service;
@@ -25,7 +25,7 @@ export class TodoController {
     this.onTodoListChanged(this.service.todos);
   }
 
-  onTodoListChanged = (todos: todoModel)  => {
+  onTodoListChanged = (todos: Todo[])  => {
     this.view.displayTodos(todos);
   };
 

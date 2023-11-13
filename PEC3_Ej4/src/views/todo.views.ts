@@ -3,6 +3,8 @@
  *
  * Visual representation of the model.
  */
+
+import { Todo, todoModel } from '../models/todo.model';
 export class TodoView {
   private app: HTMLElement;
   private form: HTMLElement;
@@ -12,16 +14,12 @@ export class TodoView {
   private todoList: HTMLElement;
   private _temporaryTodoText: string;
   constructor() {
-    // this.app = document.getElementById("root");
-    this.app = this.getElement('#root');
+    this.app = document.getElementById("root")!;
     this.form = this.createElement("form", "form");
-    this.input = this.createElement('input');
-    this.input.placeholder = 'default';
+    this.input = this.createElement('input') as HTMLInputElement;
+    this.input.placeholder = 'Add Todo...';
     this.input.type = 'text';
-    // this.input = this.createElement("input", 'input');
-    // this.input.type = "text";
-    // this.input.placeholder = "Add todo";
-    // this.input.name = "todo";
+    this.input.name = "todo";
     this.submitButton = this.createElement("button", "button");
     this.submitButton.textContent = "Submit";
     this.form.append(this.input, this.submitButton);
@@ -33,8 +31,7 @@ export class TodoView {
     this._temporaryTodoText = "";
     this._initLocalListeners();
   }
-
-
+  
   get _todoText() {
     return this.input.value;
   }
@@ -57,7 +54,7 @@ export class TodoView {
     return element;
   }
 
-  displayTodos(todos: { id: number, text: string, complete: boolean }[]) {
+  displayTodos(todos: Todo[]) {
     // Delete all nodes
     while (this.todoList.firstChild) {
       this.todoList.removeChild(this.todoList.firstChild);
@@ -74,12 +71,12 @@ export class TodoView {
         const li = this.createElement("li");
         li.id = todo.id;
 
-        const checkbox = this.createElement("input");
+        const checkbox = this.createElement("input") as HTMLInputElement;
         checkbox.type = "checkbox";
-        checkbox.checked = todo.complete;
+        checkbox.checked = todo.complete!;
 
-        const span = this.createElement("span");
-        span.contentEditable = true;
+        const span = this.createElement("span") as HTMLElement;
+        span.contentEditable = "true";
         span.classList.add("editable");
 
         if (todo.complete) {

@@ -4,6 +4,7 @@
  * Manages the data of the application.
  */
 export interface todoModel {
+  // id: string,
   text: string,
   complete?: boolean
 }
@@ -13,6 +14,7 @@ export class Todo {
   public complete?: boolean;
 
   constructor({ text, complete }: todoModel = {
+    // id: '',
     text: '',
     complete: false
   }) {

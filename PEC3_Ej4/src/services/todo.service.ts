@@ -6,10 +6,10 @@
 import { todoModel, Todo } from '../models/todo.model';
 
 export class TodoService {
-  public todos: todoModel[];
+  public todos: Todo[];
   public objectLocalStorage: todoModel[];
-  private onTodoListChanged: Function;
-  
+  private onTodoListChanged: Function = () => {};
+
   constructor() {
     const localStorageValue = localStorage.getItem("todos");
     this.objectLocalStorage = localStorageValue ? JSON.parse(localStorageValue) : null;
@@ -22,13 +22,13 @@ export class TodoService {
     this.onTodoListChanged = callback;
   }
 
-  _commit(todos: todoModel[]) {
+  _commit(todos: Todo[]) {
     this.onTodoListChanged(todos);
     localStorage.setItem("todos", JSON.stringify(todos));
   }
 
   addTodo(text: string) {
-    this.todos.push(new Todo({text}));
+    this.todos.push(new Todo({ text }));
 
     this._commit(this.todos);
   }
@@ -47,7 +47,7 @@ export class TodoService {
   }
 
   deleteTodo(_id: string) {
-    this.todos = this.todos.filter(({id}) => id !== _id);
+    this.todos = this.todos.filter(({ id }) => id !== _id);
 
     this._commit(this.todos);
   }
