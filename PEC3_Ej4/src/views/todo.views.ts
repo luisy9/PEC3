@@ -5,6 +5,7 @@
  */
 
 import { Todo, todoModel } from '../models/todo.model';
+import '../style.css';
 export class TodoView {
   private app: HTMLElement;
   private form: HTMLElement;
@@ -101,14 +102,15 @@ export class TodoView {
   }
 
   _initLocalListeners() {
-    this.todoList.addEventListener("input", event => {
-      if (event.target.className === "editable") {
-        this._temporaryTodoText = event.target.innerText;
+    this.todoList.addEventListener("input", (event: Event) => {
+      const target = event.target as HTMLElement;
+      if (target.className === "editable") {
+        this._temporaryTodoText = target.innerText;
       }
     });
   }
 
-  bindAddTodo(handler) {
+  bindAddTodo(handler: Function = () => {}) {
     this.form.addEventListener("submit", event => {
       event.preventDefault();
 
@@ -119,20 +121,22 @@ export class TodoView {
     });
   }
 
-  bindDeleteTodo(handler) {
-    this.todoList.addEventListener("click", event => {
-      if (event.target.className === "delete") {
-        const id = event.target.parentElement.id;
+  bindDeleteTodo(handler: Function = () => {}) {
+    this.todoList.addEventListener("click", (event: Event) => {
+      const target = event.target as HTMLElement;
+      if (target.className === "delete") {
+        const id = target.parentElement!.id;
 
         handler(id);
       }
     });
   }
 
-  bindEditTodo(handler) {
-    this.todoList.addEventListener("focusout", event => {
+  bindEditTodo(handler: Function = () => {}) {
+    this.todoList.addEventListener("focusout", (event: Event) => {
+      const target = event.target as HTMLElement;
       if (this._temporaryTodoText) {
-        const id = event.target.parentElement.id;
+        const id = target.parentElement!.id;
 
         handler(id, this._temporaryTodoText);
         this._temporaryTodoText = "";
@@ -140,10 +144,11 @@ export class TodoView {
     });
   }
 
-  bindToggleTodo(handler) {
-    this.todoList.addEventListener("change", event => {
-      if (event.target.type === "checkbox") {
-        const id = event.target.parentElement.id;
+  bindToggleTodo(handler: Function = () => {}) {
+    this.todoList.addEventListener("change", (event: Event) => {
+      const target = event.target as HTMLElement;
+      if (target && target instanceof HTMLInputElement && target.type === "checkbox") {
+        const id = target.parentElement!.id;
 
         handler(id);
       }
