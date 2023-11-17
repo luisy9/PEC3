@@ -20,7 +20,7 @@ module.exports = {
   },
   entry: './app.ts',
   output: {
-    filename: 'bundle.js', // Cambia a tu nombre de archivo deseado
+    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   devtool: 'source-map',
@@ -42,7 +42,6 @@ module.exports = {
     ],
   },
   plugins: [
-    //Generate index.html in /dist => https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
